@@ -1,17 +1,16 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
-
-import { env } from "t3bernardo/env";
+// Just export a dummy db object so imports don’t break
 import * as schema from "./schema";
 
-/**
- * Cache the database connection in development. This avoids creating a new connection on every HMR
- * update.
- */
-const globalForDb = globalThis as unknown as {
-  conn: postgres.Sql | undefined;
+// Export a fake db object with the same shape if needed
+export const db = {
+  posts: {
+    findFirst: async () => null,
+    findMany: async () => [],
+    insert: async () => null,
+    update: async () => null,
+    delete: async () => null,
+  },
 };
 
-// const conn = globalForDb.conn ?? postgres(env.DATABASE_URL);
-// if (env.NODE_ENV !== "production") globalForDb.conn = conn;
-// export const db = drizzle(conn, { schema });
+// Export schema as usual
+export * as schema from "./schema";
