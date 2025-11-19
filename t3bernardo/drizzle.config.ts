@@ -1,12 +1,7 @@
-import { type Config } from "drizzle-kit";
-
-import { env } from "t3bernardo/env";
-
-export default {
-  schema: "./src/server/db/schema.ts",
+export const drizzleConfig = {
   dialect: "postgresql",
   dbCredentials: {
-    url: env.DATABASE_URL,
+    url: "postgres://no-db-needed", // dummy URL
   },
   tablesFilter: ["t3bernardo_*"],
-} satisfies Config;
+};
